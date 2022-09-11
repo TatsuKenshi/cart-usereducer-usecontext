@@ -17,16 +17,16 @@ const SingleItem = (item) => {
         <div>
           <p>{title}</p>
           <p>${price}</p>
-          <button onClick={() => removeItem(id, title)}>remove item</button>
+          <button onClick={() => removeItem(id)}>remove item</button>
         </div>
         <div className="ml-4">
           <div>
-            <button onClick={() => increaseAmount(id, title)}>
+            <button onClick={() => increaseAmount(id)}>
               <ChevronUpIcon className="h-[16px] w-[16px]" />
             </button>
           </div>
           <p>{amount}</p>
-          <button onClick={() => decreaseAmount(id, title)}>
+          <button onClick={() => decreaseAmount(id)}>
             <ChevronDownIcon className="h-[16px] w-[16px]" />
           </button>
         </div>

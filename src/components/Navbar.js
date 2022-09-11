@@ -2,9 +2,9 @@ import React from "react";
 import { useCartContext } from "../hooks/useCartContext";
 
 const Navbar = () => {
-  const { amount } = useCartContext();
-  console.log(amount);
-  return <div>Navbar {amount}</div>;
+  const { numberOfItems } = useCartContext();
+
+  return <div>Navbar {numberOfItems}</div>;
 };
 
 export default Navbar;
