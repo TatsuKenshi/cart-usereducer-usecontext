@@ -1,39 +1,35 @@
-import React, {
-  createContext,
-  useReducer,
-  useEffect,
-  useMemo,
-  useCallback,
-  useRef,
-} from "react";
-import { data } from "../data/data";
+import React, { createContext, useReducer, useEffect, useRef } from "react";
 import reducer from "./reducer";
+import {
+  CLEAR_CART,
+  REMOVE_ITEM,
+  INCREASE_AMOUNT,
+  DECREASE_AMOUNT,
+  GET_TOTALS,
+  LOADING,
+  DISPLAY_ITEMS,
+} from "../actions";
 
 // fetch url
 const fetchUrl = "https://course-api.com/react-useReducer-cart-project";
 
-// crete context
+// create context
 export const CartContext = createContext();
 
 // initial state
 const initialState = {
   isLoading: false,
-  cart: data,
+  cart: [],
   totalPrice: 0,
   numberOfItems: 0,
 };
 
-// action variables
-const CLEAR_CART = "CLEAR_CART";
-const REMOVE_ITEM = "REMOVE_ITEM";
-const INCREASE_AMOUNT = "INCREASE_AMOUNT";
-const DECREASE_AMOUNT = "DECREASE_AMOUNT";
-const GET_TOTALS = "GET_TOTALS";
-const LOADING = "LOADING";
-const DISPLAY_ITEMS = "DISPLAY_ITEMS";
-
 const CartProvider = ({ children }) => {
+  // useReducer hook
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // fetching ref
+  // prevents second useEffect trigger on component mount
   const fetchRef = useRef(false);
 
   // cart and item functions
@@ -59,19 +55,8 @@ const CartProvider = ({ children }) => {
     const response = await fetch(fetchUrl);
     const cart = await response.json();
     dispatch({ type: DISPLAY_ITEMS, payload: cart });
+    // add try and catch and an action for failed fetch which will set cart to the data array and set loading to false
   };
-
-  // useMemo
-  // const myValue = {
-  //   clearCart: clearCart,
-  //   removeItem: removeItem,
-  //   increaseAmount: increaseAmount,
-  //   decreaseAmount: decreaseAmount,
-  // };
-  // const value = useMemo(
-  //   () => myValue,
-  //   [myValue, clearCart, removeItem, increaseAmount, decreaseAmount]
-  // );
 
   useEffect(() => {
     if (!fetchRef.current) {

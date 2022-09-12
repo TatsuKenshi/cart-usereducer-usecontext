@@ -8,7 +8,7 @@ function App() {
   const { isLoading } = useCartContext();
 
   return (
-    <div className="App">
+    <div className="bg-blue-200 h-screen w-screen">
       <Navbar />
       {isLoading ? (
         <Loading />

@@ -10,24 +10,29 @@ const SingleItem = (item) => {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex mt-2">
         <div>
-          <img src={img} alt={title} className="h-[100px]" />
+          <img src={img} alt={title} className="h-[80px]" />
         </div>
-        <div>
+        <div className="w-max mr-auto">
           <p>{title}</p>
           <p>${price}</p>
-          <button onClick={() => removeItem(id)}>remove item</button>
+          <button
+            onClick={() => removeItem(id)}
+            className="border px-1 bg-red-800 rounded-lg text-white hover:bg-white hover:text-red-800"
+          >
+            remove item
+          </button>
         </div>
-        <div className="ml-4">
+        <div className="text-center">
           <div>
             <button onClick={() => increaseAmount(id)}>
-              <ChevronUpIcon className="h-[16px] w-[16px]" />
+              <ChevronUpIcon className="w-[16px] text-red-800" />
             </button>
           </div>
           <p>{amount}</p>
           <button onClick={() => decreaseAmount(id)}>
-            <ChevronDownIcon className="h-[16px] w-[16px]" />
+            <ChevronDownIcon className="w-[16px] text-red-800" />
           </button>
         </div>
       </div>

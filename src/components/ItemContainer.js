@@ -6,16 +6,16 @@ const ItemContainer = () => {
   const { cart } = useCartContext();
 
   return (
-    <>
-      <div>
-        <h2>Your Cart</h2>
+    <div className="w-11/12 md:w-8/12 mx-auto my-8 max-w-[1100px]">
+      <div className="text-center">
+        <h2 className="text-2xl font-bold text-red-800">Your Cart</h2>
       </div>
-      <div>
+      <div className="mt-2">
         {cart.map((item) => {
           return <SingleItem key={item.id} {...item} />;
         })}
       </div>
-    </>
+    </div>
   );
 };
 
