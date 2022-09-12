@@ -49,13 +49,13 @@ const CartProvider = ({ children }) => {
     dispatch({ type: DECREASE_AMOUNT, payload: id });
   };
 
+  // fetching functionality
   const fetchData = async () => {
     dispatch({ type: LOADING });
 
     const response = await fetch(fetchUrl);
     const cart = await response.json();
     dispatch({ type: DISPLAY_ITEMS, payload: cart });
-    // add try and catch and an action for failed fetch which will set cart to the data array and set loading to false
   };
 
   useEffect(() => {
@@ -65,6 +65,7 @@ const CartProvider = ({ children }) => {
     }
   });
 
+  // useEffect for calculating total price and number of items
   useEffect(() => {
     dispatch({ type: GET_TOTALS });
   }, [state.cart]);
